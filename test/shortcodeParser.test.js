@@ -39,8 +39,13 @@ sp = new ShortcodeParser(someRandomAssVariables, filterFunctions);
 assert.equal(sp.parse('${a}'), 'ice cream');
 assert.equal(sp.parse(`\${a}`), 'ice cream');
 
+assert.equal(sp.parse(`\${a}\${a}`), 'ice creamice cream');
+
 assert.equal(sp.parse(`{{ type: "replace", content: "hello world" }}`), 'hello world');
 assert.equal(sp.parse(`{{ type: "replace", content: "hello \${b.nested.value}" }}`), 'hello beer');
+
+// WTF AHHHHH NO
+// assert.equal(sp.parse(`{{type: "replace", content: "hello world"}} {{ type: "replace", content: "hello \${b.nested.value}" }}`), 'hello world hello beer');
 
 assert.equal(
   sp.parse(`here's some !!{{type: "replace", content: "\${c.w.t.f}"}}!! surrounding text ya filthy animal.`), 
@@ -50,5 +55,5 @@ assert.equal(
 assert.equal(sp.parse(`{{ type: "doesn't exist" }}`), `{{ type: "doesn't exist" }}`);
 
 
-// WTF AHHHHHHH
-assert.equal(sp.parse(`{{ type: "replace", content: "{{ type: 'replace', content: 'inner' }}" }}`), 'inner');
+// WTF AHHHHH NO
+// assert.equal(sp.parse(`{{ type: "replace", content: "{{ type: 'replace', content: 'inner' }}" }}`), 'inner');
