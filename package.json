@@ -1,0 +1,22 @@
+{
+  "name": "shortcode-parser",
+  "version": "1.0.0",
+  "description": "A parser that can go through your content and replace it with variables.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/austinjherman/shortcode-parser.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/austinjherman/shortcode-parser/issues"
+  },
+  "homepage": "https://github.com/austinjherman/shortcode-parser#readme",
+  "dependencies": {
+    "json5": "^2.1.3"
+  }
+}
