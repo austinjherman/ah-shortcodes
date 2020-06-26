@@ -70,3 +70,7 @@ assert.equal(sp.parse(`{{ type: "doesn't exist" }}`), `{{ type: "doesn't exist" 
 
 // can resolve nested shortcodes
 assert.equal(sp.parse(`{{ type: "replace", content: "{{ type: 'replace', content: 'inner' }}" }}`), 'inner');
+
+
+// can resolve sequential nested shortcodes
+assert.equal(sp.parse(`{{ type: "replace", content: "{{ type: 'replace', content: 'first inner' }}" }} {{ type: "replace", content: "{{ type: 'replace', content: 'second inner' }}" }}`), 'first inner second inner');
