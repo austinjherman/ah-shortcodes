@@ -40,17 +40,22 @@ sp = new ShortcodeParser(someRandomAssVariables, filterFunctions);
 assert.equal(sp.parse('${a}'), 'ice cream');
 assert.equal(sp.parse(`\${a}`), 'ice cream');
 
+
 // can resolve sequential variables
 assert.equal(sp.parse(`\${a}\${a}`), 'ice creamice cream');
+
 
 // can resolve shortcodes
 assert.equal(sp.parse(`{{ type: "replace", content: "hello world" }}`), 'hello world');
 
+
 // can resolve shortcodes with variables inside
 assert.equal(sp.parse(`{{ type: "replace", content: "hello \${b.nested.value}" }}`), 'hello beer');
 
+
 // can resolve suquential shortcodes
 assert.equal(sp.parse(`{{type: "replace", content: "hello world"}} {{ type: "replace", content: "hello \${b.nested.value}" }}`), 'hello world hello beer');
+
 
 // resolves shortcodes in place and doesn't overwrite surrounding text
 assert.equal(
@@ -58,9 +63,10 @@ assert.equal(
   `here's some !!cheese!! surrounding text ya filthy animal.`
 )
 
+
 // doesn't alter shortcodes that don't match type checks
 assert.equal(sp.parse(`{{ type: "doesn't exist" }}`), `{{ type: "doesn't exist" }}`);
 
 
-// WTF AHHHHH NO
-// assert.equal(sp.parse(`{{ type: "replace", content: "{{ type: 'replace', content: 'inner' }}" }}`), 'inner');
+// can resolve nested shortcodes
+assert.equal(sp.parse(`{{ type: "replace", content: "{{ type: 'replace', content: 'inner' }}" }}`), 'inner');
