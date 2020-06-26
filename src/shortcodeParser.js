@@ -120,36 +120,8 @@ class ShortcodeParser {
       // Now we'll push this to an array and collect more (sequential) shortcodes if 
       // they exist.
       if(openBr === 0 && shortcodeJsonChars.length) {
-
         const shortcodeString = shortcodeJsonChars.join('');
-        const shortcodeObject = this.createShortcodeObjectRepresentation(shortcodeString);
-
-        // the following if/else block is pretty special
-        // if we have shortcode content, then we'll attempt to resolve nested shortcodes
-        // in that content 
-        if(shortcodeObject.content) {
-
-          // attempt to resolve inner shortcodes
-          const innerResolve = this.resolveShortcodesRecursively(shortcodeObject.content);
-
-          // if the innerResolve is different than the original shortcode content, 
-          // then we've resolved a nested shortcode and need to update the full content 
-          // so that subsequent iterations have updated content
-          if(innerResolve != shortcodeObject.content) {
-            fullContentChunk = this.resolveShortcodesRecursively(innerResolve);
-          }
-
-          // in the event that we didn't resolve a nested shortcode, we'll push the parent
-          // shortcode to the shortcodes array for processing
-          else shortcodes.push(shortcodeString);
-        }
-
-        // in the event that the shortcode doesn't have a content property, we'll push
-        // the parent shortcode to the shortcodes array for processing
-        else {
-          shortcodes.push(shortcodeString);
-        }
-
+        shortcodes.push(shortcodeString);
         shortcodeJsonChars = [];
       }
     });
@@ -161,6 +133,19 @@ class ShortcodeParser {
       shortcodes.forEach(shortcodeString => {
 
         const shortcodeObject = this.createShortcodeObjectRepresentation(shortcodeString);
+
+        if(shortcodeObject.content) {
+
+          // attempt to resolve inner shortcodes
+          const innerResolve = this.resolveShortcodesRecursively(shortcodeObject.content);
+
+          // if the innerResolve is different than the original shortcode content, 
+          // then we've resolved a nested shortcode and need to update the full content 
+          // so that subsequent iterations have updated content
+          if(innerResolve != shortcodeObject.content) {
+            fullContentChunk = fullContentChunk.replace(`{${shortcodeString}}`, innerResolve);
+          }
+        }
 
         fullContentChunk = this.resolveShortcode(
           fullContentChunk,
