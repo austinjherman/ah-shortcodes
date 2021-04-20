@@ -1,8 +1,9 @@
 {
-  "name": "shortcode-parser",
+  "name": "ah-shortcodes",
   "version": "1.0.0",
-  "description": "A parser that can go through your content and replace it with variables.",
+  "description": "An unopinionated and extensible shortcode parser that can process shortcodes anywhere in your content, from any CMS.",
   "main": "index.js",
+  "keywords": ["shortcodes"],
   "scripts": {
     "test": "node ./test/shortcodeParser.test.js"
   },
@@ -10,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/austinjherman/shortcode-parser.git"
   },
-  "author": "",
+  "author": "Austin Herman",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/austinjherman/shortcode-parser/issues"

@@ -4,15 +4,15 @@ Need shortcodes? This unopinionated and extensible shortcode parser can process 
 ## Usage
 
 ### In Your Content
-```
-This is an example of using the shortcode parser in content. {{ type: "replace", content: "Hello, world!" }}
-// This is an example of using the shortcode parser in content. Hello, world!
 
+This is an example of using the shortcode parser in content. {{ type: "replace", content: "Hello, world!" }}<br/>
+  
+-> This is an example of using the shortcode parser in content. Hello, world!
 
+This is another example using variables. {{ type: "replace", content: "Hello, \${b.nested.value}!" }}<br/>
 
-This is another example using variables. {{ type: "replace", content: "Hello, \${b.nested.value}!" }}
-// This is another example uusing variables. Hello, variables!
-```
+-> This is another example uusing variables. Hello, variables!
+
 
 ### In Code
 ```javascript
