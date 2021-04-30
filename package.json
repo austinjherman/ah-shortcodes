@@ -1,6 +1,6 @@
 {
   "name": "@austinjherman/ah-shortcodes",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An unopinionated and extensible shortcode parser that can process shortcodes anywhere in your content, from any CMS.",
   "main": "index.js",
   "keywords": [
