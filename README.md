@@ -9,7 +9,7 @@ This is an example of using the shortcode parser in content. {{ type: "replace",
   
 -> This is an example of using the shortcode parser in content. Hello, world!
 
-This is another example using variables. {{ type: "replace", content: "Hello, \${b.nested.value}!" }}<br/>
+This is another example using variables. {{ type: "replace", content: "Hello, \\${b.nested.value}!" }}<br/>
 
 -> This is another example uusing variables. Hello, variables!
 
@@ -17,7 +17,7 @@ This is another example using variables. {{ type: "replace", content: "Hello, \$
 ### In Code
 ```javascript
 
-const ShortcodeParser = require('../src/shortcodeParser');
+import ShortcodeParser from '@austinjherman/ah-shortcodes';
 
 // We can feed the parser an object of variables to 
 // use in our shortcodes.
@@ -50,10 +50,10 @@ const filterFunctions = [replaceParser];
 sp = new ShortcodeParser(variables, filterFunctions);
 
 // Resolve your shortcodes.
-sp.parse("Your content here!!");
+sp.parse("Your content here!! {{ type: 'replace', content: 'example' }}");
 ```
 
-## Developement
+## Development
 
 ### Installation
 - clone this repo
